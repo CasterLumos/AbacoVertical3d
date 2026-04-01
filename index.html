@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ábaco 3D - Dark Mode</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./js/three.module.js",
+                "three/addons/": "./js/addons/"
+            }
+        }
+    </script>
+</head>
+
+<body oncontextmenu="return false;">
+
+    <div id="ui-container">
+        <h1 id="total-display">0</h1>
+    </div>
+
+    <div id="help-btn">?
+        <div id="help-tooltip">
+            🖱️ <b>Botão Esquerdo:</b><br>Adicionar argola<br><br>
+            🖱️ <b>Botão Direito:</b><br>Remover argola
+        </div>
+    </div>
+    <div id="legend-box">
+        <h3>Casas Decimais</h3>
+        <b>U:</b> <span>Unidade</span><br>
+        <b>D:</b> <span>Dezena</span><br>
+        <b>C:</b> <span>Centena</span><br>
+        <b>UM:</b> <span>Unidade de Milhar</span><br>
+        <b>DM:</b> <span>Dezena de Milhar</span><br>
+        <b>CM:</b> <span>Centena de Milhar</span><br>
+        <b>UMI:</b> <span>Unidade de Milhão</span><br>
+        <b>DMI:</b> <span>Dezena de Milhão</span>
+    </div>
+</body>
+<script type="module" src="./js/script.js"></script>
+
+</html>
