@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ábaco 3D - Dark Mode</title>
+    <title>Ábaco 3D - Educacional Multitela</title>
     <link rel="stylesheet" href="./style/style.css">
     <script type="importmap">
         {
@@ -16,7 +16,48 @@
     </script>
 </head>
 
-<body oncontextmenu="return false;">
+<body data-theme="dark" oncontextmenu="return false;">
+
+    <div class="top-controls">
+        <button id="reset-abacus-btn" class="control-btn">🗑️ Limpar</button>
+        <button id="settings-toggle" class="control-btn">⚙️ Ajustes</button>
+        <button id="theme-toggle" class="control-btn">☀️ Light Mode</button>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Configurações</h2>
+                <button id="close-settings" class="close-btn">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="rod-count-input"><b>Quantidade de Hastes:</b></label>
+                    <input type="number" id="rod-count-input" min="1" max="20" value="5">
+                </div>
+
+                <div class="setting-group">
+                    <label class="toggle-container">
+                        <b>Modo Cinza (Foco):</b>
+                        <input type="checkbox" id="monochrome-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <hr class="modal-divider">
+
+                <div class="setting-group">
+                    <label><b>Cores das Argolas:</b></label>
+                    <div id="color-pickers-container">
+                    </div>
+                </div>
+
+                <button id="reset-settings" class="control-btn" style="width: 100%; margin-top: 15px;">🔄 Restaurar
+                    Padrões do Tema</button>
+            </div>
+        </div>
+    </div>
 
     <div id="ui-container">
         <h1 id="total-display">0</h1>
@@ -28,6 +69,11 @@
             🖱️ <b>Botão Direito:</b><br>Remover argola
         </div>
     </div>
+
+    <div id="mobile-mode-btn" class="hidden" title="Alternar entre Adicionar e Remover">
+        <span id="mobile-mode-icon">➕</span>
+    </div>
+
     <div id="legend-box">
         <h3>Casas Decimais</h3>
         <b>U:</b> <span>Unidade</span><br>
@@ -39,7 +85,8 @@
         <b>UMI:</b> <span>Unidade de Milhão</span><br>
         <b>DMI:</b> <span>Dezena de Milhão</span>
     </div>
+
+    <script type="module" src="./js/script.js"></script>
 </body>
-<script type="module" src="./js/script.js"></script>
 
 </html>

@@ -1,10 +1,69 @@
+/* =========================================
+   VARIÁVEIS DE TEMA
+   ========================================= */
+:root {
+    --bg-color: #95c7ff;
+    --text-color: #2f3640;
+    --text-shadow-ui: 0px 2px 4px rgba(255, 255, 255, 0.5);
+    --label-color: #2c3e50;
+    --label-shadow: 2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    --btn-bg: #ecf0f1;
+    --btn-text: #2c3e50;
+    --btn-border: #bdc3c7;
+    --btn-hover: #bdc3c7;
+    --panel-bg: rgba(255, 255, 255, 0.85);
+    --panel-border: #bdc3c7;
+    --panel-text: #34495e;
+    --panel-title: #2980b9;
+    --panel-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    --ring-u: #3498db;
+    --ring-d: #e74c3c;
+    --ring-c: #2ecc71;
+    --ring-um: #f1c40f;
+    --ring-dm: #9b59b6;
+    --ring-cm: #e67e22;
+    --ring-umi: #1abc9c;
+    --ring-dmi: #34495e;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --text-shadow-ui: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    --label-color: #ffffff;
+    --label-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    --btn-bg: #2c3e50;
+    --btn-text: #ffffff;
+    --btn-border: #34495e;
+    --btn-hover: #34495e;
+    --panel-bg: rgba(20, 20, 25, 0.85);
+    --panel-border: #444;
+    --panel-text: #ddd;
+    --panel-title: #3498db;
+    --panel-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+
+    --ring-u: #5dade2;
+    --ring-d: #ec7063;
+    --ring-c: #58d68d;
+    --ring-um: #f4d03f;
+    --ring-dm: #af7ac5;
+    --ring-cm: #eb984e;
+    --ring-umi: #48c9b0;
+    --ring-dmi: #bdc3c7;
+}
+
+/* =========================================
+   ESTILOS GERAIS
+   ========================================= */
 body {
     margin: 0;
     overflow: hidden;
-    background-color: #ddc6c6;
+    background-color: var(--bg-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffffff;
+    color: var(--text-color);
     touch-action: none;
+    transition: background-color 0.5s, color 0.5s;
 }
 
 #ui-container {
@@ -13,36 +72,91 @@ body {
     width: 100%;
     text-align: center;
     pointer-events: none;
-    /* Deixa o mouse atravessar a UI para girar a câmera */
     z-index: 10;
 }
 
 #total-display {
     font-size: 64px;
     font-weight: bold;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    text-shadow: var(--text-shadow-ui);
     margin: 0;
     letter-spacing: 2px;
 }
 
 .abaco-label {
-    color: #ffffff;
+    color: var(--label-color);
     font-size: 24px;
     font-weight: bold;
-    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: var(--label-shadow);
     pointer-events: none;
     margin-top: 20px;
 }
 
-/* Estilos do novo Tooltip flutuante */
+/* Grupo de Botões Superiores */
+.top-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 20;
+}
+
+.control-btn {
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 2px solid var(--btn-border);
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--panel-shadow);
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: scale(1.05);
+}
+
+/* Legenda Lateral */
+#legend-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--panel-text);
+    pointer-events: none;
+    box-shadow: var(--panel-shadow);
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s;
+}
+
+#legend-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    color: var(--panel-title);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tooltip Ajuda */
 #help-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: #2c3e50;
-    color: #ffffff;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -51,22 +165,22 @@ body {
     font-weight: bold;
     cursor: help;
     z-index: 20;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    border: 2px solid #34495e;
-    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: var(--panel-shadow);
+    border: 2px solid var(--btn-border);
+    transition: all 0.2s;
     user-select: none;
 }
 
 #help-btn:hover {
-    background-color: #34495e;
+    background-color: var(--btn-hover);
     transform: scale(1.05);
 }
 
 #help-tooltip {
     visibility: hidden;
     width: 220px;
-    background-color: rgba(20, 20, 25, 0.95);
-    color: #fff;
+    background-color: var(--panel-bg);
+    color: var(--panel-text);
     text-align: center;
     border-radius: 12px;
     padding: 15px;
@@ -79,8 +193,9 @@ body {
     transition: opacity 0.3s, transform 0.3s;
     transform: translateY(10px);
     pointer-events: none;
-    border: 1px solid #444;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(4px);
 }
 
 #help-btn:hover #help-tooltip {
@@ -89,35 +204,249 @@ body {
     transform: translateY(0);
 }
 
-/* Estilos da Legenda das Medidas/Casas Decimais */
-#legend-box {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(20, 20, 25, 0.85);
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 15px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #ddd;
+/* =========================================
+   MODAL DE CONFIGURAÇÕES
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
     pointer-events: none;
-    /* Permite girar a câmera mesmo clicando em cima da legenda */
+}
+
+.modal-content {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 25px;
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--panel-text);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--panel-title);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.setting-group {
+    margin-bottom: 15px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.setting-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--text-color);
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.modal-divider {
+    border: 0;
+    border-top: 1px solid var(--panel-border);
+    margin: 20px 0;
+}
+
+/* Fileira de Seletor de Cores */
+.color-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* =========================================
+   SELETOR DE CORES CUSTOMIZADO (ACORDEÃO)
+   ========================================= */
+.color-accordion {
+    margin-bottom: 8px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.color-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    list-style: none;
+    /* Remove a setinha nativa do HTML */
+    border-radius: 8px;
+}
+
+.color-summary::-webkit-details-marker {
+    display: none;
+    /* Remove a setinha no Chrome/Safari */
+}
+
+.color-summary:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.current-color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--panel-border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.custom-color-picker {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    border-top: 1px solid var(--panel-border);
+}
+
+.color-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2);
+}
+
+.color-swatch.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+[data-theme="light"] .color-swatch.active {
+    border-color: #2c3e50;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   CONTROLES INFERIORES (TOUCH / MOBILE)
+   ========================================= */
+.bottom-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.mode-btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    color: white;
+    user-select: none;
+    border: 3px solid transparent;
+}
+
+.mode-btn:active {
+    transform: scale(0.95);
+}
+
+.mode-add {
+    background-color: #27ae60;
+    border-color: #2ecc71;
+}
+
+.mode-remove {
+    background-color: #c0392b;
+    border-color: #e74c3c;
+}
+
+/* =========================================
+   CONTROLE DISCRETO (TOUCH / MOBILE)
+   ========================================= */
+#mobile-mode-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #27ae60;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 20;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    backdrop-filter: blur(4px);
-    /* Dá um efeito de vidro fosco no fundo */
+    border: 2px solid #2ecc71;
+    transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+    user-select: none;
 }
 
-#legend-box h3 {
-    margin: 0 0 10px 0;
-    font-size: 15px;
-    color: #3498db;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+#mobile-mode-btn:active {
+    transform: scale(0.9);
 }
 
-#legend-box span {
-    color: #888;
+#mobile-mode-btn.mode-remove {
+    background-color: #c0392b;
+    border-color: #e74c3c;
+}
+
+/* Esconde o botão caso esteja com a classe hidden */
+.hidden {
+    display: none !important;
 }
